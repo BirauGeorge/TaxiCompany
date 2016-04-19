@@ -13,8 +13,7 @@ namespace Domain
        public virtual string Phone { get;  set; }
        public virtual double Salary { get;  set; }
        public virtual DateTime DataAngajarii { get;  set;}
-
-
+       
        public virtual IList<Driver> Drivers { get;  set; }
        
            // get { return _drivers; }

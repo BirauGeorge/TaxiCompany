@@ -18,6 +18,6 @@ namespace RepositoryInterface
         IList<Employee> ShowDriverSalary();
         IList<DriverDetailsDto> EmployeeDate();
         IList<Driver> SubSelectEmployees();
-       
+        IList<DriverInfo> SelectAllInfo();
     }
 }

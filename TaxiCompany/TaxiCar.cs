@@ -56,7 +56,7 @@ namespace Domain
         public virtual double Price { get; protected set; }
         public virtual double GeoLong { get; set; }
         public virtual double GeoLat { get; set; }
-
+        public virtual IList<Driver> Drivers { get; set; }
         public TaxiCar(string uniqueId,string plate,double price, string brand)
         {
             UniquieId = uniqueId;

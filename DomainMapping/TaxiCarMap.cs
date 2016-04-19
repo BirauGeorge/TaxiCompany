@@ -19,7 +19,7 @@ namespace DomainMapping
             Map(x => x.Price).Not.Nullable();
             Map(x => x.GeoLat).Nullable();
             Map(x => x.GeoLong).Nullable();
-           
+            HasMany(x => x.Drivers).Cascade.All().Inverse();
         }
     }
 }

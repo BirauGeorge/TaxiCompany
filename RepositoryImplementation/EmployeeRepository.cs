@@ -122,6 +122,43 @@ namespace Repository_Implementation
 
             return employees;
         }
+
+        public IList<DriverInfo> SelectAllInfo()
+        {
+            DriverInfo driverDetailsDto = null;
+            Employee employeeAlias = null;
+            Driver driverAlias = null;
+            TaxiCar taxiCarAlias = null;
+
+            using (ITransaction transaction = _session.BeginTransaction())
+            {
+                var driverData = _session.QueryOver(() => driverAlias)
+                    .JoinAlias(() => driverAlias.Employee, () => employeeAlias)
+                    .JoinAlias(()=> driverAlias.TaxiCar,()=>taxiCarAlias)
+                    .SelectList(
+                        list => list.Select(() => employeeAlias.FirstName)
+                           .WithAlias(() => driverDetailsDto.FirstName)
+                           .Select(() => employeeAlias.LastName)
+                           .WithAlias(() => driverDetailsDto.LastName)
+                           .Select(()=>taxiCarAlias.UniquieId)
+                           .WithAlias(()=>driverDetailsDto.UniqueId)
+                           .Select(()=>taxiCarAlias.Plate)
+                           .WithAlias(()=>driverDetailsDto.Plate)
+                           .Select(()=>taxiCarAlias.Brand)
+                           .WithAlias(()=>driverDetailsDto.Brand)
+                           .Select(()=>taxiCarAlias.GeoLong)
+                           .WithAlias(()=>driverDetailsDto.GeoLong)
+                           .Select(()=>taxiCarAlias.GeoLat)
+                           .WithAlias(()=>driverDetailsDto.GeoLat)
+                           .Select(()=>driverAlias.OnDuty)
+                           .WithAlias(()=>driverDetailsDto.Onduty) 
+                    ).TransformUsing(Transformers.AliasToBean<DriverInfo>()).List<DriverInfo>();
+
+
+                return driverData;
+            }
+           
+        }
         protected readonly ISession _session = SessionGenerator.Instance.GetSession();
     }
 }
