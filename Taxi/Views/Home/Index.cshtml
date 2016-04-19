@@ -5,7 +5,6 @@
 <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
 <!-- This css is to ensure that the google map contols (zoom bar etc) show and size correctly. -->
 <!-- This css is to give a nice big popup "info window" when a marker is clicked on the map -->
-
 <style>
     #map_canvas img {
         max-width: none;
@@ -14,14 +13,19 @@
         height: 200px;
         width: 300px;
         -webkit-user-select: none;
- 
-        
+
+
     }
     .infowindow {
         background-color: #EDFDFF;
     }
 </style>
+ <b size="50px">Legenda:</b> <img src="http://maps.google.com/mapfiles/ms/icons/orange-dot.png" /> - Sediu 
 
+<img src="http://maps.google.com/mapfiles/ms/icons/green-dot.png"/> - Available Taxi
+<img src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png"/> - NotAvailable Taxi
+<br/>
+<br />
 <!-- This is the div that will contain the Google Map -->
 <div id="map_canvas" style="height: 730px; width: 1200px; "></div>
 
@@ -54,14 +58,16 @@
         // This shows adding a simple pin "marker" - this happens to be the Tate Gallery in Liverpool!
         var myLatlng = new google.maps.LatLng(45.762130, 21.209678);
 
+        //Marker Pt Sediu
+
         var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: 'TaxiCompany'
+           position: myLatlng,
+           map: map,
+          title: 'TaxiCompany'
         });
 
         // You can make markers different colors...  google it up!
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/orange-dot.png')
 
         // a sample list of JSON encoded data of places to visit in Liverpool, UK
         // you can either make up a JSON list server side, or call it from a controller using JSONResult
@@ -78,13 +84,14 @@
             if (item.Onduty==true) {
                 onduty = "Free";
                 var infowindow = new google.maps.InfoWindow({
-                    content: "<div class='infoDiv' ><h2>"+ "Name: " + item.FirstName +" "+ item.LastName + "</h2>" + "<div><h4>Brand: " + item.Brand + "<br\>  Plate:" +item.Plate + " <br\> TaxiId: " +item.UniqueId+ "<br\> Status: " +onduty + "</h4></div> <button type='button' class='btn btn-success'>Rent this Taxi</button></div>"
+                    content: "<div class='infoDiv' ><h2>"+ "Name: " + item.FirstName +" "+ item.LastName + "</h2>" + "<div><h4>Brand: " + item.Brand + "<br\>  Plate:" +item.Plate + " <br\> TaxiId: " +item.UniqueId+ "<br\> Status: " +onduty + "</h4></div> <button type='button' class='btn btn-success'>Order this taxi</button></div>"
+
                 });
                
             } else {
                 onduty = "Occupied";
                 var infowindow = new google.maps.InfoWindow({
-                    content: "<div class='infoDiv' ><h2>"+ "Name: " + item.FirstName +" "+ item.LastName + "</h2>" + "<div><h4>Brand: " + item.Brand + "<br\>  Plate:" +item.Plate + " <br\> TaxiId: " +item.UniqueId+ "<br\> Status: " +onduty + "</h4></div> <button type='button' class='btn btn-danger'>You cant rent this taxi</button></div>"
+                    content: "<div class='infoDiv' ><h2>"+ "Name: " + item.FirstName +" "+ item.LastName + "</h2>" + "<div><h4>Brand: " + item.Brand + "<br\>  Plate:" +item.Plate + " <br\> TaxiId: " +item.UniqueId+ "<br\> Status: " +onduty + "</h4></div> <button type='button' class='btn btn-danger'>You can't order this taxi</button></div>"
                 });
 
             }
@@ -93,18 +100,28 @@
                 'map': map,
 
             });
+            if (onduty == "Free") {
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+            } else {
+                // Make the marker-pin blue!
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+            }
+           
 
-            // Make the marker-pin blue!
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
-
-            // put in some information about each json object - in this case, the opening hours.
+           
            
 
             // finally hook up an "OnClick" listener to the map so it pops up out info-window when the marker-pin is clicked!
-                google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map, marker);
+            infowindow.close();
+            
+            google.maps.event.addListener(marker, 'click', function() {
+               
+              infowindow.open(map, marker); 
+                 if (infowindow) {
+                        infowindow.marker.close();
+                    }
             });
-
+           
         });
     }
 
