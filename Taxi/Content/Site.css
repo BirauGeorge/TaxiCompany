@@ -159,3 +159,20 @@ height: 100%;
   font-weight: 300;
   src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
 }
+#map_canvas img {
+        max-width: none;
+    }
+    .infoDiv {
+        height: 200px;
+        width: 300px;
+        -webkit-user-select: none;
+
+
+    }
+    .infowindow {
+        background-color: #EDFDFF;
+    }
+
+table{
+  width: 100%;
+ }

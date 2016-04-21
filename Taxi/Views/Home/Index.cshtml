@@ -5,23 +5,8 @@
 <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
 <!-- This css is to ensure that the google map contols (zoom bar etc) show and size correctly. -->
 <!-- This css is to give a nice big popup "info window" when a marker is clicked on the map -->
-<style>
-    #map_canvas img {
-        max-width: none;
-    }
-    .infoDiv {
-        height: 200px;
-        width: 300px;
-        -webkit-user-select: none;
 
-
-    }
-    .infowindow {
-        background-color: #EDFDFF;
-    }
-</style>
  <b size="50px">Legenda:</b> <img src="http://maps.google.com/mapfiles/ms/icons/orange-dot.png" /> - Sediu 
-
 <img src="http://maps.google.com/mapfiles/ms/icons/green-dot.png"/> - Available Taxi
 <img src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png"/> - NotAvailable Taxi
 <br/>
@@ -106,11 +91,6 @@
                 // Make the marker-pin blue!
                 marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
             }
-           
-
-           
-           
-
             // finally hook up an "OnClick" listener to the map so it pops up out info-window when the marker-pin is clicked!
             infowindow.close();
             

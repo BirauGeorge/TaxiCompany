@@ -21,7 +21,7 @@ namespace Taxi.CastleWindsorInfrastructure
             container.Register(Component.For(typeof(IEmployeeRepository)).ImplementedBy(typeof(EmployeeRepository)).LifestylePerWebRequest());
             container.Register(Component.For(typeof(IDriverRepository)).ImplementedBy(typeof(DriverRepository)).LifestylePerWebRequest());
             container.Register(Component.For(typeof(ITaxiCarRepository)).ImplementedBy(typeof(TaxiCarRepository)).LifestylePerWebRequest());
-            container.Register(Component.For(typeof (IAccountRepository)).ImplementedBy(typeof (AccountRepository)).LifestylePerWebRequest());
+            container.Register(Component.For(typeof(IAccountRepository)).ImplementedBy(typeof (AccountRepository)).LifestylePerWebRequest());
             container.Register(Component.For(typeof(ISession)).UsingFactoryMethod(m => SessionGenerator.CreateSessionFactory()));
 
             var controllers = Assembly.GetExecutingAssembly().GetTypes().Where(x => x.BaseType == typeof(Controller)).ToList();

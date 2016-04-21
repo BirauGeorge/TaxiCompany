@@ -25,7 +25,7 @@ namespace Repository_Implementation
             return SessionFactory.OpenSession();
         }
 
-        private static readonly  SessionGenerator _sessionGenerator =new SessionGenerator();
+        private static readonly  SessionGenerator _sessionGenerator = new SessionGenerator();
         private static readonly ISessionFactory SessionFactory = CreateSessionFactory();
 
         public static ISessionFactory CreateSessionFactory()

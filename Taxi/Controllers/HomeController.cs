@@ -27,7 +27,7 @@ namespace Taxi.Controllers
 
             return View(date);
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

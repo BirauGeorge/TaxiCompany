@@ -46,16 +46,16 @@ namespace Taxi.Controllers
         }
 
         // POST: Employee/Create
-        [Authorize]
-        [HttpPost]
-        public ActionResult Create(Employee employee)
-        {
-               Employee thisnew = new Employee(employee.FirstName, employee.FirstName, employee.Adress, employee.Phone, employee.Salary);
-               _employeeRepository.Save(thisnew);
+        //[Authorize]
+        //[HttpPost]
+        //public ActionResult Create(Employee employee)
+        //{
+        //       Employee thisnew = new Employee(employee.FirstName, employee.FirstName, employee.Adress, employee.Phone, employee.Salary);
+        //       _employeeRepository.Save(thisnew);
             
-                return View();
+        //        return View();
             
-        }
+        //}
         
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
@@ -95,5 +95,7 @@ namespace Taxi.Controllers
                 return View();
             }
         }
+
+       
     }
 }

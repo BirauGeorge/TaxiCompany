@@ -7,14 +7,14 @@ namespace Domain
 {
    public class Employee: Entity
    {
-       public virtual string FirstName { get; set; }
+       public virtual string FirstName { get;  set; }
        public virtual string LastName { get;  set; }
        public virtual string Adress { get;  set; }
        public virtual string Phone { get;  set; }
-       public virtual double Salary { get;  set; }
+       public virtual double Salary { get;   set; }
        public virtual DateTime DataAngajarii { get;  set;}
        
-       public virtual IList<Driver> Drivers { get;  set; }
+       public virtual IList<Driver> Drivers { get; set; }
        
            // get { return _drivers; }
        
