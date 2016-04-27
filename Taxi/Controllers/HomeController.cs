@@ -13,12 +13,14 @@ namespace Taxi.Controllers
     {
         private static ITaxiCarRepository _taxiCarRepository;
         private static IEmployeeRepository _employeeRepository;
+        private static IDriverRepository _driverRepository;
 
-        public HomeController(ITaxiCarRepository taxiCarRepository, IEmployeeRepository employeeRepository)
+        public HomeController(ITaxiCarRepository taxiCarRepository, IEmployeeRepository employeeRepository, IDriverRepository driverRepository)
         {
             NHibernateProfiler.Initialize();
             _taxiCarRepository = taxiCarRepository;
             _employeeRepository = employeeRepository;
+            _driverRepository = driverRepository;
         }
         public ActionResult Index()
         {
@@ -41,5 +43,7 @@ namespace Taxi.Controllers
 
             return View();
         }
+
+       
     }
 }

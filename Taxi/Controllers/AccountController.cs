@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Domain;
+using HibernatingRhinos.Profiler.Appender.NHibernate;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -21,6 +22,10 @@ namespace Taxi.Controllers
     
     public class AccountController : Controller
     {
+        public AccountController()
+        {
+            NHibernateProfiler.Initialize();
+        }
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
       
@@ -35,7 +40,7 @@ namespace Taxi.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Employee");
+            return RedirectToAction("Index", "Home");
         }
         public ApplicationSignInManager SignInManager
         {
@@ -112,7 +117,7 @@ namespace Taxi.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -136,7 +141,7 @@ namespace Taxi.Controllers
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
               //  var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                
@@ -204,5 +209,7 @@ namespace Taxi.Controllers
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+        
     }
 }

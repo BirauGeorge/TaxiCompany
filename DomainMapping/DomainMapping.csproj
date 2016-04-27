@@ -53,6 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountMap.cs" />
+    <Compile Include="AspNetRolesMap.cs" />
+    <Compile Include="AspNetUserClaimsMap.cs" />
+    <Compile Include="AspNetUserLoginMap.cs" />
+    <Compile Include="AspNetUserMap.cs" />
+    <Compile Include="AspNetUserRolesMap.cs" />
     <Compile Include="DriverMap.cs" />
     <Compile Include="EmployeeMap.cs" />
     <Compile Include="EntityMap.cs" />
@@ -60,7 +65,6 @@
     <Compile Include="TaxiCarMap.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CreateConstraint.hbm.xml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

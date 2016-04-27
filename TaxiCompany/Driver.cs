@@ -7,19 +7,18 @@ namespace Domain
     {
         public virtual int Id { get; protected set;}
        // public virtual int EmployeeId { get; protected set; }
-        
         public virtual bool OnDuty { get; set;}
-        public virtual double DayEarnings { get; set;}   
-        public virtual Employee Employee { get; protected set; }
+        
+        public virtual Employee Employee { get; set; }
         public virtual TaxiCar TaxiCar { get; protected set; }
-        public Driver(Employee employee,int taxiCarId,bool onDuty,double dayEarnings)
+        public Driver(Employee employee,int taxiCarId,bool onDuty)
         {
             OnDuty = onDuty;
-            DayEarnings = dayEarnings;
+            
             Employee = employee;
         }
-        [Obsolete]
-        protected Driver()
+        
+        public Driver()
         {
         }
     }

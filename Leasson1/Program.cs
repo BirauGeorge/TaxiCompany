@@ -97,8 +97,10 @@ namespace Leasson1
         static void Main(string[] args)
 
         {
+            var data = new DateTime();
+            data = DateTime.UtcNow;
             App_Start.NHibernateProfilerBootstrapper.PreStart();
-            Employee employee=new Employee("George","Mihai","sssa","2121",22);
+            Employee employee=new Employee("George","Mihai","sssa","2121",22,data);
          //   Driver driver=new Driver(employee,1,true,1.22);
             employeeFactory = ServiceLocator.Get<Factory>();
             employeeRepository = ServiceLocator.Get<IEmployeeRepository>();

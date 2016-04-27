@@ -115,8 +115,7 @@ namespace Repository_Implementation
             IList<Driver> employees =
                 _session.QueryOver<Driver>(() => driverAlias)
                     .JoinAlias(() => driverAlias.Employee, () => employeeAlias)
-                    .WithSubquery.WhereAll(p => p.DayEarnings > QueryOver.Of<Driver>()
-                        .SelectList(list => list.SelectAvg(x => x.DayEarnings)).As<double>())
+                   
                     .List<Driver>();
 
 
@@ -158,6 +157,40 @@ namespace Repository_Implementation
                 return driverData;
             }
            
+        }
+        public IList<DriverInfo> SelectDriverDetail(int id)
+        {
+            DriverInfo driverDetailsDto = null;
+            Employee employeeAlias = null;
+            Driver driverAlias = null;
+            TaxiCar taxiCarAlias = null;
+
+            using (ITransaction transaction = _session.BeginTransaction())
+            {
+                var driverData = _session.QueryOver(() => driverAlias).
+                    Full.JoinAlias(() => driverAlias.Employee, () => employeeAlias)
+                    .Full.JoinAlias(() => driverAlias.TaxiCar, () => taxiCarAlias).Where(x => employeeAlias.Id == id)
+                    .SelectList(
+                        list => list.Select(() => employeeAlias.FirstName)
+                            .WithAlias(() => driverDetailsDto.FirstName)
+                            .Select(() => employeeAlias.LastName)
+                            .WithAlias(() => driverDetailsDto.LastName)
+                            .Select(() => taxiCarAlias.UniquieId)
+                            .WithAlias(() => driverDetailsDto.UniqueId)
+                            .Select(() => taxiCarAlias.Plate)
+                            .WithAlias(() => driverDetailsDto.Plate)
+                            .Select(() => taxiCarAlias.Brand)
+                            .WithAlias(() => driverDetailsDto.Brand)
+                            .Select(() => taxiCarAlias.GeoLong)
+                            .WithAlias(() => driverDetailsDto.GeoLong)
+                            .Select(() => taxiCarAlias.GeoLat)
+                            .WithAlias(() => driverDetailsDto.GeoLat)
+                            .Select(() => driverAlias.OnDuty)
+                            .WithAlias(() => driverDetailsDto.Onduty)
+                    ).TransformUsing(Transformers.AliasToBean<DriverInfo>()).List<DriverInfo>();
+                return driverData;
+            }
+
         }
         protected readonly ISession _session = SessionGenerator.Instance.GetSession();
     }

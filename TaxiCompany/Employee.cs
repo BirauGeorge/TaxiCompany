@@ -30,15 +30,15 @@ namespace Domain
        private void SetSalary() { }
 
     
-       public Employee(string firstname, string lastname, string adress, string phone, double salary)
+       public Employee(string firstname, string lastname, string adress, string phone, double salary,DateTime dataangajarii)
        {
            FirstName = firstname;
            LastName = lastname;
            Adress = adress;
            Phone = phone;
            Salary = salary;
-           DataAngajarii = DateTime.Now;
-           
+           DataAngajarii =dataangajarii;
+
        }
         private readonly  IList<Driver> _drivers=new List<Driver>();
         

@@ -12,6 +12,7 @@ namespace RepositoryInterface
         void Register(Account account);
         Account Login(Account account);
         void ChangePassword(Account account,string password);
-    }
-        
+        void AddDefaultRoles(string UserId);
+        void AddRoles(AspNetRoles aspNetRoles);
+    }  
 }

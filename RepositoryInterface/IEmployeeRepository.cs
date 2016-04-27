@@ -19,5 +19,6 @@ namespace RepositoryInterface
         IList<DriverDetailsDto> EmployeeDate();
         IList<Driver> SubSelectEmployees();
         IList<DriverInfo> SelectAllInfo();
+        IList<DriverInfo> SelectDriverDetail(int id);
     }
 }

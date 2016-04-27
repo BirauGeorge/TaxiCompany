@@ -19,6 +19,7 @@ namespace Repository_Implementation
         {
             get { return _sessionGenerator; }
         }
+        private static readonly object factorylock = new object();
 
         public ISession GetSession()
         {
@@ -30,12 +31,13 @@ namespace Repository_Implementation
 
         public static ISessionFactory CreateSessionFactory()
         {
+            
             var configuration = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012
                     .ConnectionString(builder => builder.Database("MappingDemo")
                         .Server(@"RODSK41004")
                         .TrustedConnection()))
-                .Mappings(cfg => CreateMapping(cfg))
+                 .Mappings(CreateMapping)
                 .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true));
             var conf = configuration.BuildConfiguration();
             return conf.BuildSessionFactory();

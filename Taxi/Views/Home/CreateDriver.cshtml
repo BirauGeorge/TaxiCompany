@@ -1,0 +1,44 @@
+﻿@model Domain.Driver
+
+<div>
+    <h4>Driver</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+     
+        <dt>
+            @Html.DisplayNameFor(model => model.OnDuty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnDuty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DayEarnings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayEarnings)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

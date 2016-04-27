@@ -36,5 +36,20 @@ namespace Repository_Implementation
         {
             
         }
+
+        public void AddDefaultRoles(string RoleId)
+        {
+            
+        }
+
+        public void AddRoles(AspNetRoles aspNetRoles)
+        {
+            using (ITransaction transaction = _session.BeginTransaction())
+            {
+                _session.SaveOrUpdate(aspNetRoles);
+                transaction.Commit();
+            }
+        }
     }
+
 }

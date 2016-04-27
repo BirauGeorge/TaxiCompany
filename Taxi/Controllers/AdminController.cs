@@ -6,20 +6,26 @@ using System.Web;
 using System.Web.Mvc;
 using Domain;
 using Factories;
+using HibernatingRhinos.Profiler.Appender.NHibernate;
 using Infrastructure;
 using RepositoryInterface;
 
 namespace Taxi.Controllers
 {
-    [Authorize]
+
     public class AdminController : Controller
     {
    
         private static IEmployeeRepository _employeeRepository;
+        private static IAccountRepository _accountRepository;
+        private static IDriverRepository _driverRepository;
 
-        public AdminController(IEmployeeRepository employeeRepository)
+        public AdminController(IEmployeeRepository employeeRepository,IAccountRepository accountRepository, IDriverRepository driverRepository)
         {
+            NHibernateProfiler.Initialize();
             _employeeRepository = employeeRepository;
+            _accountRepository = accountRepository;
+            _driverRepository = driverRepository;
         }
         
         // GET: Employee
@@ -29,13 +35,11 @@ namespace Taxi.Controllers
             employee = _employeeRepository.SlectAllEmployees();
             return View(employee);
         }
-
-     
-
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var driver = _employeeRepository.SelectDriverDetail(id);
+            return View(driver);
         }
 
         // GET: Employee/Create
@@ -45,35 +49,52 @@ namespace Taxi.Controllers
             return View();
         }
 
-        // POST: Employee/Create
-        //[Authorize]
-        //[HttpPost]
-        //public ActionResult Create(Employee employee)
-        //{
-        //       Employee thisnew = new Employee(employee.FirstName, employee.FirstName, employee.Adress, employee.Phone, employee.Salary);
-        //       _employeeRepository.Save(thisnew);
+        //POST: Employee/Create
+       [Authorize]
+       [HttpPost]
+        public ActionResult Create(Driver driver)
+       {
+           Driver thisnew = new Driver()
+           {
+
+           };
             
-        //        return View();
-            
-        //}
-        
+
+            return View();
+
+        }
+
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
         {
            var employee = _employeeRepository.Get(id);
-            return View(employee);
+           return View(employee);
         }
 
         // POST: Employee/Edit/5
-        [Authorize]
+      
+      
         [HttpPost]
         public ActionResult Edit(int id, Employee collection)
         {
          
             _employeeRepository.Update(collection);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Admin");
         }
 
+        public ActionResult AddRoles()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddRoles(AspNetRoles aspNetRoles)
+        {
+            AspNetRoles aspNetRolesCreate = new AspNetRoles(aspNetRoles.Name);
+            
+            _accountRepository.AddRoles(aspNetRoles);
+            return View();
+        }
         // GET: Employee/Delete/5
         public ActionResult Delete(int id)
         {
@@ -95,7 +116,8 @@ namespace Taxi.Controllers
                 return View();
             }
         }
-
        
+
+
     }
 }

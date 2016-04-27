@@ -16,9 +16,9 @@ namespace DomainMapping
         {
             Id(x => x.Id);        
             Map(x => x.OnDuty).Not.Nullable();
-            Map(x => x.DayEarnings).Not.Nullable();
+  
             References(x => x.Employee).Not.Nullable();
-            References(x => x.TaxiCar).Not.Nullable();         
+            References(x => x.TaxiCar).Nullable();         
         }
     }
 }

@@ -41,6 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="AspNetRoles.cs" />
+    <Compile Include="AspNetUserClaims.cs" />
+    <Compile Include="AspNetUserLogin.cs" />
+    <Compile Include="AspNetUserRoles.cs" />
+    <Compile Include="AspNetUsers.cs" />
     <Compile Include="Dto\DriverDetailsDto.cs" />
     <Compile Include="Dto\DriverInfo.cs" />
     <Compile Include="Employee.cs" />

@@ -8,6 +8,7 @@ namespace Domain.Dto
 {
     public class DriverInfo
     {
+        public int Id { get; set; }
         public string FirstName { get; set;}
         public string LastName { get; set; }
         public string UniqueId { get; set; }
@@ -15,6 +16,8 @@ namespace Domain.Dto
         public string Brand { get; set; }
         public double GeoLong { get; set; }
         public double GeoLat { get; set; }      
-        public bool Onduty { get; set; } 
+        public bool Onduty { get; set; }
+
+        
     }
 }

@@ -13,10 +13,19 @@ namespace Repository_Implementation
 {
     public class DriverRepository : IDriverRepository
     {
+        private static IEmployeeRepository _employeeRepository;
+
+        public DriverRepository(IEmployeeRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
         public void Save(Driver entity)
         {
+            Employee add = new Employee();
+            add = entity.Employee;
             using (ITransaction transaction = _session.BeginTransaction())
             {
+                _employeeRepository.Save(add);
                 _session.SaveOrUpdate(entity);
                 transaction.Commit(); 
             }
