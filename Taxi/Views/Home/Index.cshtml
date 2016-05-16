@@ -6,10 +6,10 @@
 <!-- This css is to ensure that the google map contols (zoom bar etc) show and size correctly. -->
 <!-- This css is to give a nice big popup "info window" when a marker is clicked on the map -->
 
- <b size="50px">Legenda:</b> <img src="http://maps.google.com/mapfiles/ms/icons/orange-dot.png" /> - Sediu 
-<img src="http://maps.google.com/mapfiles/ms/icons/green-dot.png"/> - Available Taxi
-<img src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png"/> - NotAvailable Taxi
-<br/>
+<b size="50px">Legenda:</b> <img src="http://maps.google.com/mapfiles/ms/icons/orange-dot.png" /> - Sediu
+<img src="http://maps.google.com/mapfiles/ms/icons/green-dot.png" /> - Available Taxi
+<img src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png" /> - NotAvailable Taxi
+<br />
 <br />
 <!-- This is the div that will contain the Google Map -->
 <div id="map_canvas" style="height: 730px; width: 1200px; "></div>
@@ -72,7 +72,7 @@
                     content: "<div class='infoDiv' ><h2>"+ "Name: " + item.FirstName +" "+ item.LastName + "</h2>" + "<div><h4>Brand: " + item.Brand + "<br\>  Plate:" +item.Plate + " <br\> TaxiId: " +item.UniqueId+ "<br\> Status: " +onduty + "</h4></div> <button type='button' class='btn btn-success'>Order this taxi</button></div>"
 
                 });
-               
+
             } else {
                 onduty = "Occupied";
                 var infowindow = new google.maps.InfoWindow({
@@ -93,15 +93,15 @@
             }
             // finally hook up an "OnClick" listener to the map so it pops up out info-window when the marker-pin is clicked!
             infowindow.close();
-            
+
             google.maps.event.addListener(marker, 'click', function() {
-               
-              infowindow.open(map, marker); 
+
+              infowindow.open(map, marker);
                  if (infowindow) {
                         infowindow.marker.close();
                     }
             });
-           
+
         });
     }
 

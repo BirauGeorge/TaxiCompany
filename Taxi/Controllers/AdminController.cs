@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using Domain;
+using Domain.Dto;
 using Factories;
 using HibernatingRhinos.Profiler.Appender.NHibernate;
 using Infrastructure;
@@ -52,17 +54,29 @@ namespace Taxi.Controllers
         //POST: Employee/Create
        [Authorize]
        [HttpPost]
-        public ActionResult Create(Driver driver)
+        public ActionResult Create(DriverAdd driver)
        {
-           Driver thisnew = new Driver()
+           if (ModelState.IsValid)
            {
-
-           };
-            
-
-            return View();
-
-        }
+               Employee createEmployee = new Employee()
+               {
+                   FirstName = driver.FirstName,
+                   LastName = driver.LastName,
+                   Adress = driver.Adress,
+                   Phone = driver.Phone,
+                   Salary = driver.Salary,
+                   DataAngajarii = DateTime.Now
+               };
+               Driver createDriver = new Driver()
+               {
+                   OnDuty = driver.Onduty,
+                   Employee = createEmployee
+               };
+               _driverRepository.Save(createDriver);
+               return RedirectToAction("Details", "Admin", new {id = createEmployee.Id});
+           }
+           return View();
+       }
 
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
@@ -116,8 +130,23 @@ namespace Taxi.Controllers
                 return View();
             }
         }
-       
 
+        public ActionResult AddTaxi()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddTaxiCar(TaxiCar taxiCar)
+        {
+
+            return View();
+        }
+
+        public ActionResult Stats()
+        {
+            return View();
+        }
 
     }
 }

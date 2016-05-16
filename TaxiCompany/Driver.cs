@@ -14,8 +14,9 @@ namespace Domain
         public Driver(Employee employee,int taxiCarId,bool onDuty)
         {
             OnDuty = onDuty;
-            
             Employee = employee;
+            
+
         }
         
         public Driver()

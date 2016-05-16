@@ -6,14 +6,12 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <br/>
 <br/>
 
 <body>
 <br/>
-    <br />
 <div class="com-md-3">
     <div class="area"></div>
         <nav class="main-menu">
@@ -137,9 +135,12 @@
         <p>&copy; @DateTime.Now.Year -My Taxi App</p>
     </footer>
 </div>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+
+    @RenderSection("scripts", required: false)
+    
 </body>
 </html>

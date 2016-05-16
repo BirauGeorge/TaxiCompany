@@ -31,6 +31,18 @@ namespace Repository_Implementation
             TaxiCar taxialias = null;
             IList<TaxiCar> taxiList = _session.QueryOver(() => taxialias).List();
             return taxiList;
-        } 
+        }
+
+        public void AddTaxiToDriver(int id)
+        {
+            using (ITransaction transaction = _session.BeginTransaction())
+            {
+                var query = _session.CreateQuery("Update Driver set TaxiCar_Id=:taxicarid where Employee_id=employeeid");
+                query.SetParameter("taxicarid", id);
+
+                int res = query.ExecuteUpdate();
+                transaction.Commit();
+            }
+        }
     }
 }

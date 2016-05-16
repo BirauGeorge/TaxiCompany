@@ -239,6 +239,7 @@
     <Content Include="Content\font\css\font-awesome.min.css" />
     <Content Include="Content\font\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font\HELP-US-OUT.txt" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -285,9 +286,10 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.11.1.js" />
+    <Content Include="Scripts\jquery-1.11.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -338,6 +340,9 @@
     <Content Include="Views\Admin\AddRoles.cshtml" />
     <Content Include="Views\Home\CreateDriver.cshtml" />
     <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Shared\_createDrivers.cshtml" />
+    <Content Include="Views\Admin\AddTaxiCar.cshtml" />
+    <Content Include="Views\Admin\Stats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

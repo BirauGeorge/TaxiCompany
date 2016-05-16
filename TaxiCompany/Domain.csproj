@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +47,7 @@
     <Compile Include="AspNetUserLogin.cs" />
     <Compile Include="AspNetUserRoles.cs" />
     <Compile Include="AspNetUsers.cs" />
+    <Compile Include="Dto\DriverAdd.cs" />
     <Compile Include="Dto\DriverDetailsDto.cs" />
     <Compile Include="Dto\DriverInfo.cs" />
     <Compile Include="Employee.cs" />

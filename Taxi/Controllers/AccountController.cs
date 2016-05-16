@@ -111,7 +111,7 @@ namespace Taxi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return RedirectToAction("Home","Index");
             }
 
             // This doesn't count login failures towards account lockout

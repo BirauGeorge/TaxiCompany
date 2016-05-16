@@ -48,12 +48,12 @@ namespace Domain
         //    Console.ReadLine();
         //}
         // public int TaxiId;
-        public virtual int Id { get; protected set; }
-        public virtual string Plate { get; protected set; }
-        public virtual string UniquieId { get; protected set; }
+        public virtual int Id { get;  set; }
+        public virtual string Plate { get;  set; }
+        public virtual string UniquieId { get;  set; }
         //   p virtualublic DateTime? AcquisitingYear ;
-        public virtual string Brand { get; protected set; }
-        public virtual double Price { get; protected set; }
+        public virtual string Brand { get;  set; }
+        public virtual double Price { get;  set; }
         public virtual double GeoLong { get; set; }
         public virtual double GeoLat { get; set; }
         public virtual IList<Driver> Drivers { get; set; }

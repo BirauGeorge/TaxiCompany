@@ -1,69 +1,118 @@
 ﻿@model IEnumerable<Domain.Dto.DriverInfo>
 
+<div class="container">
+    <h2>Dynamic Tabs</h2>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+        <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <h3>HOME</h3>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UniqueId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Plate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Brand)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GeoLong)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GeoLat)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Onduty)
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UniqueId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Plate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GeoLong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GeoLat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Onduty)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                        @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                        @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                    </td>
+
+                }
+            </table>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <h3>Menu 1</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div>
+        <div id="menu3" class="tab-pane fade">
+            <h3>Menu 3</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+    </div>
+</div>
+<div id="divPopup" style="display: none">
+    <p>Some Text</p>
+</div>
+<script language="javascript" type="text/javascript">
+    function showPopup() {
+        $("#divPopup").dialog(
+        {
+            height: 400,
+            width: 400,
+            modal: true,
+            buttons: {
+                "Ok": function() {
+                    $(this).dialog("close");
+                },
+                "Cancel": function() {
+                    $(this).dialog("close");
+                }
+
+            }
+        });
+    }
+</script>
+<input type="button" onclick="showPopup()" value="Click to showPopup"/>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "lnkCreate" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UniqueId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Plate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GeoLong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GeoLat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Onduty)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UniqueId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Plate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GeoLong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GeoLat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Onduty)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    
-}
-
-</table>
