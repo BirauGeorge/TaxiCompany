@@ -10,7 +10,9 @@ namespace RepositoryInterface
     public interface ITaxiCarRepository
     {
         void Save(TaxiCar entity);
-        TaxiCar Get(long id);
+        TaxiCar Get(int id);
         IList<TaxiCar> AllTaxi();
+        void Delete(TaxiCar entity);
+        IList<TaxiCar> UnusedCars();
     }
 }

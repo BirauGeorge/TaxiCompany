@@ -11,31 +11,45 @@ using Factories;
 using HibernatingRhinos.Profiler.Appender.NHibernate;
 using Infrastructure;
 using RepositoryInterface;
+using Taxi.Controllers;
+using Topshelf.Configurators;
 
 namespace Taxi.Controllers
 {
 
     public class AdminController : Controller
     {
-   
         private static IEmployeeRepository _employeeRepository;
         private static IAccountRepository _accountRepository;
         private static IDriverRepository _driverRepository;
+        private static ITaxiCarRepository _taxiCarRepository;
 
-        public AdminController(IEmployeeRepository employeeRepository,IAccountRepository accountRepository, IDriverRepository driverRepository)
+        public AdminController(IEmployeeRepository employeeRepository, IAccountRepository accountRepository,
+            IDriverRepository driverRepository, ITaxiCarRepository taxiCarRepository)
         {
-            NHibernateProfiler.Initialize();
+
             _employeeRepository = employeeRepository;
             _accountRepository = accountRepository;
             _driverRepository = driverRepository;
+            _taxiCarRepository = taxiCarRepository;
         }
-        
+
         // GET: Employee
         public ActionResult Index()
         {
-            IList<Employee> employee=new List<Employee>();
+            IList<Employee> employee = new List<Employee>();
             employee = _employeeRepository.SlectAllEmployees();
+            IList<TaxiCar> lista = _taxiCarRepository.UnusedCars();
             return View(employee);
+         
+        }
+
+        public ActionResult ShowTaxi()
+        {
+            IList<TaxiCar> taxiCars=new List<TaxiCar>();
+            taxiCars = _taxiCarRepository.AllTaxi();
+
+            return View(taxiCars);
         }
         // GET: Employee/Details/5
         public ActionResult Details(int id)
@@ -47,53 +61,53 @@ namespace Taxi.Controllers
         // GET: Employee/Create
         public ActionResult Create()
         {
-           
+
             return View();
         }
 
         //POST: Employee/Create
-       [Authorize]
-       [HttpPost]
+        [Authorize]
+        [HttpPost]
         public ActionResult Create(DriverAdd driver)
-       {
-           if (ModelState.IsValid)
-           {
-               Employee createEmployee = new Employee()
-               {
-                   FirstName = driver.FirstName,
-                   LastName = driver.LastName,
-                   Adress = driver.Adress,
-                   Phone = driver.Phone,
-                   Salary = driver.Salary,
-                   DataAngajarii = DateTime.Now
-               };
-               Driver createDriver = new Driver()
-               {
-                   OnDuty = driver.Onduty,
-                   Employee = createEmployee
-               };
-               _driverRepository.Save(createDriver);
-               return RedirectToAction("Details", "Admin", new {id = createEmployee.Id});
-           }
-           return View();
-       }
+        {
+            if (ModelState.IsValid)
+            {
+                Employee createEmployee = new Employee()
+                {
+                    FirstName = driver.FirstName,
+                    LastName = driver.LastName,
+                    Adress = driver.Adress,
+                    Phone = driver.Phone,
+                    Salary = driver.Salary,
+                    DataAngajarii = DateTime.Now
+                };
+                Driver createDriver = new Driver()
+                {
+                    OnDuty = driver.Onduty,
+                    Employee = createEmployee
+                };
+                _driverRepository.Save(createDriver);
+                return RedirectToAction("Details", "Admin", new {id = createEmployee.Id});
+            }
+            return View();
+        }
 
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
         {
-           var employee = _employeeRepository.Get(id);
-           return View(employee);
+            var employee = _employeeRepository.Get(id);
+            return View(employee);
         }
 
         // POST: Employee/Edit/5
-      
-      
+
+
         [HttpPost]
         public ActionResult Edit(int id, Employee collection)
         {
-         
+
             _employeeRepository.Update(collection);
-            return RedirectToAction("Index","Admin");
+            return RedirectToAction("Index", "Admin");
         }
 
         public ActionResult AddRoles()
@@ -105,45 +119,54 @@ namespace Taxi.Controllers
         public ActionResult AddRoles(AspNetRoles aspNetRoles)
         {
             AspNetRoles aspNetRolesCreate = new AspNetRoles(aspNetRoles.Name);
-            
+
             _accountRepository.AddRoles(aspNetRoles);
             return View();
         }
+
         // GET: Employee/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //public ActionResult Delete(int id)
+        //{
+        //    var employee = _employeeRepository.Get(id);
+        //    return View(employee);
+
+        //}
 
         // POST: Employee/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("~/Views/Employee/Employee.aspx");
-            }
-            catch
-            {
-                return View();
-            }
+       
+        
+                var employee = _employeeRepository.Get(id);
+                _employeeRepository.Delete(employee);
+                return RedirectToAction("Index");
         }
 
+        public ActionResult DeleteTaxi(int id)
+        {
+            var taxi = _taxiCarRepository.Get(id);
+            _taxiCarRepository.Delete(taxi);
+            return RedirectToAction("ShowTaxi");
+        }
         public ActionResult AddTaxi()
         {
+        
             return View();
         }
-
         [HttpPost]
-        public ActionResult AddTaxiCar(TaxiCar taxiCar)
+        public ActionResult AddTaxi(TaxiCar taxi)
         {
+            if (ModelState.IsValid) { 
 
+                _taxiCarRepository.Save(taxi);
+                return RedirectToAction("ShowTaxi");
+            }
             return View();
         }
+    
 
-        public ActionResult Stats()
+    public ActionResult Stats()
         {
             return View();
         }

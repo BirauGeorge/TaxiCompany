@@ -39,7 +39,8 @@ namespace Domain
            Salary = salary;
            DataAngajarii =dataangajarii;
 
-       }
+       } 
+
         private readonly  IList<Driver> _drivers=new List<Driver>();
         
         public Employee()

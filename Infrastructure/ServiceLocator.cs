@@ -7,13 +7,13 @@ namespace Infrastructure
 {
    public static class ServiceLocator
     {
-   
-       public static void All()
-       {
-          Kernel.Bind<IStudentNotify>().To<EmailNotification>();
-          Kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>();
-          Kernel.Bind<IDriverRepository>().To<DriverRepository>();
-       }
+
+        public static void All()
+        {
+            Kernel.Bind<IStudentNotify>().To<EmailNotification>();
+            Kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>();
+            Kernel.Bind<IDriverRepository>().To<DriverRepository>();
+        }
         public static T Get<T>()
         {
             return Kernel.Get<T>();

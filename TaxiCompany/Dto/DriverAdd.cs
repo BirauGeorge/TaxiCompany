@@ -10,10 +10,12 @@ namespace Domain.Dto
   public class DriverAdd
     {
         [Required]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         [StringLength(40, MinimumLength = 3)]
         public string FirstName { get; set; }
 
         [Required]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         [StringLength(40, MinimumLength = 3)]
         public string LastName { get; set; }
 
@@ -22,7 +24,9 @@ namespace Domain.Dto
         public string Adress { get; set; }
 
         [Required]
-        [StringLength(10, MinimumLength = 10)]
+
+        // 07xxxxxxxx
+        [RegularExpression(@"^[0][7][0-9]{8,8}$", ErrorMessage = "Ro Phone Number Invalid")]
         public string Phone { get; set; }
 
         [Required]

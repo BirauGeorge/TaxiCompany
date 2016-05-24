@@ -28,6 +28,12 @@ namespace Repository_Implementation
            
         }
 
+        public void Delete(Employee entiy)
+        {
+            _session.Delete(entiy);
+            _session.Flush();
+        }
+
         public IList<Employee> SlectAllEmployees()
         {
             Employee employeealias = null;

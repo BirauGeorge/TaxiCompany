@@ -12,6 +12,7 @@ namespace RepositoryInterface
     {
         void Save(Employee entity);
         Employee Get(long id);
+        void Delete(Employee entity);
         void  Update(Employee entity);
         IList<Employee> SlectAllEmployees();
         IList<Employee> ShowTop3EmployeesbySalary();

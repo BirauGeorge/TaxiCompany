@@ -8,9 +8,6 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using NHibernate;
 using Repository_Implementation;
-
-
-
 namespace Taxi.CastleWindsorInfrastructure
 {
     public class ApplicationCastleIntaller : IWindsorInstaller

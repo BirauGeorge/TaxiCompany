@@ -36,25 +36,18 @@
     </td>
 </table>
 <div id="divPopup" style="display: none">
-    @Html.Partial("Create", new Domain.Dto.DriverAdd())
+    @Html.Partial("Create",new Domain.Dto.DriverAdd());
 </div>
 
 <script language="javascript" type="text/javascript">
     function showPopup() {
+      
         $("#divPopup").dialog(
         {
             height: 600,
-            width: 50,
-            modal: true,
-            buttons: {
-                "Ok": function() {
-                    $(this).dialog("close");
-                },
-                "Cancel": function() {
-                    $(this).dialog("close");
-                }
-
-            }
+            width: 400,
+            modal: true
+           
         });
     }
 </script>

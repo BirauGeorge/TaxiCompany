@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 using Domain;
 using HibernatingRhinos.Profiler.Appender.NHibernate;
 using Microsoft.Ajax.Utilities;
@@ -14,6 +15,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using RepositoryInterface;
 using Taxi.Models;
+using Taxi.Controllers;
 using Taxi.EncriptedPassword;
 
 

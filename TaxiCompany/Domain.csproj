@@ -50,6 +50,7 @@
     <Compile Include="Dto\DriverAdd.cs" />
     <Compile Include="Dto\DriverDetailsDto.cs" />
     <Compile Include="Dto\DriverInfo.cs" />
+    <Compile Include="Dto\TaxiCarAdd.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Driver.cs" />
     <Compile Include="Entity.cs" />
